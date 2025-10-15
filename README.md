@@ -48,50 +48,36 @@ Aventura com tom épico, seriedade nos conflitos, com  momentos de leveza e riva
 ## Gameplay
 
 ### **Mecânicas **
-- Combate 1x1 em tempo real
-- Movimentação lateral em 2D: andar, correr, pular, agachar, esquivar
+- Combate 1x1 
+- Movimentação lateral em 2D: andar, correr, pular
 - Golpes básicos (socos e chutes leves/fortes)
-- Combos encadeáveis
 - Ataques especiais mágicos ou elementais
-- Golpe Supremo (Ultimate) com barra de energia cheia
 - Defesa e contra-ataque
 - Seleção de golpes especiais via HUD (mobile) ou comandos (PC)
 
 ### **Controles**
 
-**PC/Console (teclado ou controle):**
-- Movimento: Setas / Direcional
-- Soco leve: A  
-- Soco forte: S  
-- Chute leve: D  
-- Chute forte: F  
-- Defesa: Shift  
-- Pular: Barra de espaço  
-- Esquiva: Ctrl  
-- Especial 1/2: Q / E  
-- Ultimate: R (com barra cheia)
+**PC/Console:**
+- andar direita: botão direito
+- andar esquerda: botão esquerdo
+- pular: botão cima
+- defesa: barra de espaço 
 
-**Mobile:**
-- Direcional digital (lado esquerdo)
-- Botões de ataque e especial (lado direito)
-- Barra de especial visível
-- Toque para executar ataques especiais com ícones na tela
 
 ### **Progressão**
-- Modo Arcade: o jogador enfrenta uma sequência de 8 lutadores com dificuldade crescente, até o chefe final
-- Modo História: narrativas individuais para cada personagem
+- Modo Arcade: o jogador enfrenta uma sequência de lutadores com dificuldade crescente, até o chefe final
+- Modo História: narrativa central do jogo 
 - Modo Versus Local: combate entre dois jogadores
 - Modo Treino: teste de combos e habilidades
-- Desbloqueio de personagens e skins conforme progresso
 
 ### **Vitória / Derrota**
 
 **Condição de Vitória:**
 - Reduzir a barra de vida do oponente a zero (melhor de 3 rounds)
-- Vencer todos os combates do modo arcade ou história
+- Vencer todos os combates
 
 **Condição de Derrota:**
 - Ter a própria barra de vida reduzida a zero
-- Perder 2 rounds seguidos (ou mais da metade, conforme regras do modo)
+- Perder 2 rounds seguidos 
 
 ---
