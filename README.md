@@ -13,7 +13,7 @@
 ## 🛠️ Tecnologias Escolhidas
 
 pygame
-
+wetwetwetw
 
 # GDD
 
