@@ -17,7 +17,7 @@ pygame
 
 # GDD
 
-**Nome do Jogo:** Elemental Clash  
+**Nome do Jogo:** Elemental   
 **Gênero:** Luta / Ação com elementos mágicos  
 **Estilo Visual:** 2D  
 **Público-alvo:** Jovens de 12+
@@ -49,8 +49,8 @@ Aventura com tom épico, seriedade nos conflitos, com  momentos de leveza e riva
 
 ### **Mecânicas **
 - Combate 1x1 
-- Movimentação lateral em 2D: andar, correr, pular
-- Golpes básicos (socos e chutes leves/fortes)
+- Movimentação em 2D: andar: direita, esquerda, cima e baixo 
+- Golpes básicos
 - Ataques especiais mágicos ou elementais
 - Defesa e contra-ataque
 - Seleção de golpes especiais via HUD (mobile) ou comandos (PC)
@@ -58,15 +58,15 @@ Aventura com tom épico, seriedade nos conflitos, com  momentos de leveza e riva
 ### **Controles**
 
 **PC/Console:**
-- andar direita: botão direito
-- andar esquerda: botão esquerdo
-- pular: botão cima
-- defesa: barra de espaço 
+- andar para direita: botão direito
+- andar para esquerda: botão esquerdo
+- andar para cima: botão cima
+- andar para baixo: botão baixo 
+- iniciar a batalha: barra de espaço 
 
 
 ### **Progressão**
 - Modo Arcade: o jogador enfrenta uma sequência de lutadores com dificuldade crescente, até o chefe final
-- Modo História: narrativa central do jogo 
 - Modo Versus Local: combate entre dois jogadores
 - Modo Treino: teste de combos e habilidades
 
