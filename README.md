@@ -13,5 +13,5 @@
 ## 🛠️ Tecnologias Escolhidas
 
 pygame
-wetwetwetw
+
 
