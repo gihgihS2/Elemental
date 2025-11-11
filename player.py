@@ -101,6 +101,15 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += movement.x * self.speed * dt
         self.rect.y += movement.y * self.speed * dt
 
+        if self.rect.left < 0:
+            self.rect.left = 0
+        if self.rect.right > 800:
+            self.rect.right = 800
+        if self.rect.top < 0:
+            self.rect.top = 0
+        if self.rect.bottom > 600:
+            self.rect.bottom = 600
+
     def animate(self, dt):
         """Atualiza o frame da animação."""
         if self.moving:
