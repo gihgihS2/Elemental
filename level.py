@@ -40,6 +40,26 @@ class Level:
         self.combat_requested = False
         self.vitoria = None
 
+        # --------------------------
+        #        SONS
+        # --------------------------
+
+        # Som de fundo Goodhaven
+        pygame.mixer.music.load("assets/sons/439_Goodhaven_fundo.mp3")
+        pygame.mixer.music.set_volume(0.05)
+        pygame.mixer.music.play(-1)
+
+        # Som ambiente pássaros
+        self.som_passaros = pygame.mixer.Sound("assets/sons/ambiente_passaros.mp3")
+        self.som_passaros.set_volume(0.02)
+        self.som_passaros.play(-1)
+
+        # Som andando
+        self.som_andando = pygame.mixer.Sound("assets/sons/som_andando.mp3")
+        self.som_andando.set_volume(0.04)
+
+        self.passos_tocando = False  # flag evitar repetir
+
     def check_proximity(self):
         """Verifica se o jogador está próximo do inimigo."""
         if self.enemy and self.player.rect.colliderect(self.enemy.rect.inflate(5, 5)):
@@ -91,6 +111,18 @@ class Level:
         self.all_sprites.update(dt)
         self.all_sprites.draw(self.display_surface)
 
+        # -----------------------------------
+        # SOM DE PASSOS (FUNCIONA AQUI)
+        # -----------------------------------
+        if self.player.moving:
+            if not self.passos_tocando:
+                self.som_andando.play(-1)
+                self.passos_tocando = True
+        else:
+            if self.passos_tocando:
+                self.som_andando.stop()
+                self.passos_tocando = False
+
         # Gerenciar colisões e proximidade
         self.handle_collision()
         self.check_proximity()
@@ -113,3 +145,9 @@ class Level:
         elif self.player.life <= 0:
             self.vitoria = False
             self.player.rect.topleft = self.initial_player_pos
+    
+    def stop_all_sounds(self):
+        pygame.mixer.music.stop()
+        self.som_passaros.stop()
+        self.som_andando.stop()
+        self.passos_tocando = False

@@ -89,13 +89,14 @@ class Arena:
             "Fogasso": self.load_spell_frames(os.path.join("assets", "poderes", "poder_fogo")),
             "Preda": self.load_spell_frames(os.path.join("assets", "poderes", "poder_preda")),
         }
-
+        #posição dos poderzinhos
         self.anim_positions = {
             "player": (self.player["x"] + 270, self.player["y"] - 160),
             "enemy": (self.enemy["x"] - 190, self.enemy["y"] + 260)
         }
 
         self.current_anim = None
+        # tempo por frame (padrão, pode ajustar por spell se quiser)
         self.anim_frame_time = 0.03
 
     def load_spell_frames(self, folder):
@@ -106,6 +107,7 @@ class Arena:
             for fname in files:
                 path = os.path.join(folder, fname)
                 img = pygame.image.load(path).convert_alpha()
+                # escala padrão (ajuste se necessário)
                 img = pygame.transform.scale(img, (160, 160))
                 frames.append(img)
         except Exception as e:

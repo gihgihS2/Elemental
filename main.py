@@ -33,10 +33,19 @@ class Game:
 
         self.font = pygame.font.SysFont(None, 28)
 
+        # 🔊 --- INICIAR MÚSICA DO MENU ---
+        pygame.mixer.music.load(os.path.join("assets", "sons", "menu.mp3"))
+        pygame.mixer.music.play(-1)   # -1 = loop infinito
+        pygame.mixer.music.set_volume(0.03)
+
+
     def start_new_game(self):
+        pygame.mixer.music.stop()
+
         self.level = Level(self.screen, inimigo_vivo=Game.inimigo_vivo)
         self.state = "exploration"
         self.arena = None
+
 
     def open_arena_from_level(self):
         self.arena = Arena(
@@ -45,6 +54,7 @@ class Game:
             inimigo_vivo=Game.inimigo_vivo
         )
         self.state = "arena"
+
 
     def draw_main_menu(self):
         self.screen.blit(self.menu_bg, (0, 0))
@@ -55,6 +65,7 @@ class Game:
 
         self.screen.blit(self.btn_comecar_img, self.btn_comecar_rect)
         self.screen.blit(self.btn_sair_img, self.btn_sair_rect)
+
 
     def handle_main_menu_events(self, events):
         for event in events:
@@ -71,6 +82,7 @@ class Game:
                 elif self.btn_sair_rect.collidepoint(mx, my):
                     pygame.quit()
                     sys.exit()
+
 
     def run(self):
         while True:
@@ -92,12 +104,12 @@ class Game:
 
             # ----- EXPLORAÇÃO -----
             elif self.state == "exploration":
-                # roda o level normalmente
                 self.level.run(dt, events)
                 pygame.display.update()
 
                 # se pedir combate, entra na arena
                 if self.level.combat_requested:
+                    self.level.stop_all_sounds()
                     self.open_arena_from_level()
 
                 continue
@@ -108,21 +120,12 @@ class Game:
 
                 if result == "return":
                     Game.inimigo_vivo = self.arena.enemy_alive
-                    player_life = self.arena.player["life"]
 
                     self.state = "exploration"
+                    self.level = Level(self.screen, inimigo_vivo=Game.inimigo_vivo)
 
-                    if not self.arena.vitoria:
-                        # derrota — recria o level com player resetado
-                        self.level = Level(self.screen, inimigo_vivo=Game.inimigo_vivo)
-                        self.level.player.life = 100
-                        self.level.player.rect.topleft = self.level.initial_player_pos
-
-                    else:
-                        # vitória — mantém vida atual
-                        self.level = Level(self.screen, inimigo_vivo=Game.inimigo_vivo)
-                        self.level.player.life = player_life
-
+                    self.level.player.life = 100
+                    self.level.player.rect.topleft = self.level.initial_player_pos
                     self.level.combat_requested = False
 
                 continue
