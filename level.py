@@ -40,15 +40,34 @@ class Level:
         self.combat_requested = False
         self.vitoria = None
 
+        # --------------------------
+        #        SONS
+        # --------------------------
+
+        # Som de fundo Goodhaven
+        pygame.mixer.music.load("assets/sons/439_Goodhaven_fundo.mp3")
+        pygame.mixer.music.set_volume(0.05)
+        pygame.mixer.music.play(-1)
+
+        # Som ambiente pássaros
+        self.som_passaros = pygame.mixer.Sound("assets/sons/ambiente_passaros.mp3")
+        self.som_passaros.set_volume(0.02)
+        self.som_passaros.play(-1)
+
+        # Som andando
+        self.som_andando = pygame.mixer.Sound("assets/sons/som_andando.mp3")
+        self.som_andando.set_volume(0.04)
+
+        self.passos_tocando = False
     def check_proximity(self):
-        """Verifica se o jogador está próximo do inimigo."""
+        # Verifica se o jogador está próximo do inimigo.
         if self.enemy and self.player.rect.colliderect(self.enemy.rect.inflate(5, 5)):
             self.show_prompt = True
             return
         self.show_prompt = False
 
     def draw_prompt(self):
-        """Desenha o prompt de combate na tela."""
+        # Desenha convite de combate na tela.
         rect = pygame.Rect(200, 200, 400, 200)
         pygame.draw.rect(self.display_surface, (0, 0, 0), rect)
         pygame.draw.rect(self.display_surface, (255, 255, 255), rect, 4)
@@ -60,15 +79,13 @@ class Level:
         self.display_surface.blit(yes_text, (rect.x + 155, rect.y + 100))
 
     def handle_prompt_input(self, event):
-        """Trata a entrada do jogador no prompt."""
+        # Trata a entrada do jogador no prompt.
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_y:
                 self.combat_requested = True
-            elif event.key == pygame.K_n:
-                self.show_prompt = False
 
     def handle_collision(self):
-        """Impede que o jogador atravesse o inimigo."""
+        # Impede que o jogador atravesse o inimigo.
         if self.enemy and pygame.sprite.collide_rect(self.player, self.enemy):
             dx = self.player.rect.centerx - self.enemy.rect.centerx
             dy = self.player.rect.centery - self.enemy.rect.centery
@@ -85,11 +102,22 @@ class Level:
                     self.player.rect.bottom = self.enemy.rect.top
 
     def run(self, dt, events):
-        """Executa o loop principal da fase."""
-        # Desenhar background e sprites
+        #Executa o loop principal da fase.
+        # Desenha background e sprites
         self.display_surface.blit(self.background, (0, 0))
         self.all_sprites.update(dt)
         self.all_sprites.draw(self.display_surface)
+
+        
+        # SOM DE PASSOS
+        if self.player.moving:
+            if not self.passos_tocando:
+                self.som_andando.play(-1)
+                self.passos_tocando = True
+        else:
+            if self.passos_tocando:
+                self.som_andando.stop()
+                self.passos_tocando = False
 
         # Gerenciar colisões e proximidade
         self.handle_collision()
@@ -113,3 +141,9 @@ class Level:
         elif self.player.life <= 0:
             self.vitoria = False
             self.player.rect.topleft = self.initial_player_pos
+    
+    def stop_all_sounds(self):
+        pygame.mixer.music.stop()
+        self.som_passaros.stop()
+        self.som_andando.stop()
+        self.passos_tocando = False
