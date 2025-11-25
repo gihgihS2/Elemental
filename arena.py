@@ -40,7 +40,7 @@ class Arena:
         # Música de batalha
         music_path = os.path.join("assets", "sons", "Eleuxelier_bat.mp3")
         pygame.mixer.music.load(music_path)
-        pygame.mixer.music.set_volume(0.5)
+        pygame.mixer.music.set_volume(0.05)
         pygame.mixer.music.play(-1)  # loop infinito
 
         # Efeitos
@@ -48,6 +48,11 @@ class Arena:
         self.som_agua = pygame.mixer.Sound(os.path.join("assets", "sons", "som_agua.mp3"))
         self.som_fogo = pygame.mixer.Sound(os.path.join("assets", "sons", "som_fogo.mp3"))
         self.som_preda = pygame.mixer.Sound(os.path.join("assets", "sons", "som_preda.mp3"))
+
+        self.som_erro.set_volume(0.04)
+        self.som_agua.set_volume(0.04)
+        self.som_fogo.set_volume(0.04)
+        self.som_preda.set_volume(0.04)
 
         # --- Estados ---
         self.turn = "player"
@@ -96,7 +101,7 @@ class Arena:
         }
 
         self.current_anim = None
-        # tempo por frame (padrão, pode ajustar por spell se quiser)
+        # tempo por frame
         self.anim_frame_time = 0.03
 
     def load_spell_frames(self, folder):
@@ -107,7 +112,7 @@ class Arena:
             for fname in files:
                 path = os.path.join(folder, fname)
                 img = pygame.image.load(path).convert_alpha()
-                # escala padrão (ajuste se necessário)
+                # escala padrão
                 img = pygame.transform.scale(img, (160, 160))
                 frames.append(img)
         except Exception as e:
@@ -159,7 +164,7 @@ class Arena:
 
         self.mensagem_timer = 2
 
-        # Floating
+        
         tx = target["x"] + 20
         ty = target["y"] - 10
         text_str = f"CRÍTICO! -{damage}" if critico else f"-{damage}"
@@ -211,7 +216,7 @@ class Arena:
 
             return
 
-        # SOM DO ATAQUE CERTO
+        # SOM DO ATAQUE
         if attack_type == "Agua":
             self.som_agua.play()
         elif attack_type == "Fogasso":
@@ -288,7 +293,7 @@ class Arena:
                 ay = anim["pos"][1] - surf.get_height() // 2
                 self.display_surface.blit(surf, (ax, ay))
 
-        # Floating texts
+        # texto
         remove = []
         for i, ft in enumerate(self.floating_texts):
             ft["y"] += ft["vy"]
@@ -314,9 +319,9 @@ class Arena:
             pygame.draw.rect(self.display_surface, self.CINZA, rect_bg, 2)
             self.display_surface.blit(self.font.render(self.mensagem, True, self.BRANCO), (rect_bg.x + 10, rect_bg.y + 6))
 
-        # Tela final
+        # Tela final 
         if self.vitoria is not None:
-            pygame.mixer.music.stop()  # <<< PARA A MÚSICA
+            pygame.mixer.music.stop() # PARA A MUSICA 
             msg = "Você venceu!" if self.vitoria else "Você perdeu!"
             self.display_surface.blit(self.font.render(msg + " Pressione [Enter] para voltar.", True, self.BRANCO), (200, 250))
 

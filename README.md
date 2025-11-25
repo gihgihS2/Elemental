@@ -32,7 +32,7 @@ Um jogo de luta 2D onde guerreiros dominam artes marciais e poderes elementais e
 Em um mundo dividido entre quatro grandes reinos elementais — fogo, água, terra e ar — os antigos guardiões desapareceram, deixando o equilíbrio ameaçado. Guerreiros escolhidos de cada região surgem para restaurar a ordem ou dominar os outros reinos, usando suas habilidades únicas de combate e magia elemental.
 
 ### **Protagonista**
-Personagens selecionáveis 
+Guerreiro elemental
 
 ### **Objetivo**
 Vencer todos os oponentes em uma série de batalhas para alcançar o título de Guardião Supremo e restabelecer (ou dominar) o equilíbrio entre os reinos elementais.
@@ -67,17 +67,12 @@ Aventura com tom épico, seriedade nos conflitos, com  momentos de leveza e riva
 
 ### **Progressão**
 - Modo Arcade: o jogador enfrenta uma sequência de lutadores com dificuldade crescente, até o chefe final
-- Modo Versus Local: combate entre dois jogadores
-- Modo Treino: teste de combos e habilidades
 
 ### **Vitória / Derrota**
 
 **Condição de Vitória:**
-- Reduzir a barra de vida do oponente a zero (melhor de 3 rounds)
+- Reduzir a barra de vida do oponente a zero
 - Vencer todos os combates
 
 **Condição de Derrota:**
 - Ter a própria barra de vida reduzida a zero
-- Perder 2 rounds seguidos 
-
----

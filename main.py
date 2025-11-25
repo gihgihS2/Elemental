@@ -33,7 +33,7 @@ class Game:
 
         self.font = pygame.font.SysFont(None, 28)
 
-        # 🔊 --- INICIAR MÚSICA DO MENU ---
+        #  INICIAR MÚSICA DO MENU
         pygame.mixer.music.load(os.path.join("assets", "sons", "menu.mp3"))
         pygame.mixer.music.play(-1)   # -1 = loop infinito
         pygame.mixer.music.set_volume(0.03)
@@ -109,7 +109,7 @@ class Game:
 
                 # se pedir combate, entra na arena
                 if self.level.combat_requested:
-                    self.level.stop_all_sounds()
+                    self.level.stop_all_sounds() #PARAR TODOS SONS DE LEVEL
                     self.open_arena_from_level()
 
                 continue
